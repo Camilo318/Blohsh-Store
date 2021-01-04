@@ -1,0 +1,14 @@
+@import "./custom.scss";
+
+body {
+  font-family: system-ui;
+  margin: 0;
+}
+
+header {
+  font-weight: bold;
+}
+.slate-color {
+  background-color: slateblue;
+  color: white;
+}
