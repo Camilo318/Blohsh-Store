@@ -1,14 +1,10 @@
 @import "./custom.scss";
 
 body {
-  font-family: system-ui;
+  font-family: "Montserrat", system-ui;
   margin: 0;
 }
 
-header {
-  font-weight: bold;
-}
-.slate-color {
-  background-color: slateblue;
-  color: white;
+main {
+  min-height: 80vh;
 }

@@ -3,9 +3,13 @@ import { Container } from "react-bootstrap"
 
 const Footer = () => {
   return (
-    <Container>
-      <footer>Footer</footer>
-    </Container>
+    <footer>
+      <Container variant="dark">
+        <div className="text-center py-3">
+          Copyright &copy; Blohsh Store {new Date().getFullYear()}
+        </div>
+      </Container>
+    </footer>
   )
 }
 
