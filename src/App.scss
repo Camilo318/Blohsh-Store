@@ -14,6 +14,10 @@ a {
   }
 }
 
+button:focus {
+  outline: none;
+}
+
 main {
   min-height: 80vh;
 }
