@@ -1,14 +1,15 @@
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import { Container } from "react-bootstrap"
+import HomeScreen from "./containers/HomeScreen"
 
 function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="py-3">
         <Container>
-          <h1>Billie Eilish</h1>
+          <HomeScreen />
         </Container>
       </main>
       <Footer />
