@@ -11,8 +11,10 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-          <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/product/:id" component={ProductScreen} />
+          <Switch>
+            <Route exact path="/" component={HomeScreen} />
+            <Route exact path="/product/:id" component={ProductScreen} />
+          </Switch>
         </Container>
       </main>
       <Footer />
