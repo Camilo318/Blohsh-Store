@@ -46,3 +46,15 @@ main {
     color: #007bff;
   }
 }
+
+.product__container {
+  display: flex;
+}
+
+.product__photo {
+  flex-basis: 50%;
+}
+
+.product__info {
+  flex-basis: 50%;
+}
