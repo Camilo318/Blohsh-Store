@@ -9,8 +9,6 @@ const ProductScreen = () => {
   const { id } = useParams()
   const [product, setProduct] = useState({})
 
-  console.log(product)
-
   useEffect(() => {
     async function fetchProduct() {
       const { data } = await axios.get(`/api/products/${id}`)
@@ -18,7 +16,7 @@ const ProductScreen = () => {
     }
 
     fetchProduct()
-  }, [])
+  }, [id])
 
   return (
     <div>
