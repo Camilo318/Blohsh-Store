@@ -44,7 +44,7 @@ const ProductScreen = () => {
                 variant='dark'
                 size='lg'
                 block
-                disabled={product?.countInStock > 0 ? false : true}
+                disabled={product?.countInStock < 1}
               >
                 ADD TO CART
               </Button>
