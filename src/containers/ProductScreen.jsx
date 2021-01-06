@@ -28,8 +28,27 @@ const ProductScreen = () => {
               <Rating value={product?.rating} text={product?.numReviews} />
             </ListGroup.Item>
 
-            <ListGroup.Item>Price: ${product?.price}</ListGroup.Item>
-            <ListGroup.Item>Description: {product?.description}</ListGroup.Item>
+            <ListGroup.Item>
+              <strong>Price:</strong> ${product?.price}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <strong>Description:</strong> {product?.description}
+            </ListGroup.Item>
+
+            <ListGroup.Item>
+              <strong>Status: </strong>
+              {product?.countInStock ? "In Stock 😗" : "Out of Stock 😑"}
+
+              <Button
+                className='my-3 btn-cart'
+                variant='dark'
+                size='lg'
+                block
+                disabled={product?.countInStock > 0 ? false : true}
+              >
+                ADD TO CART
+              </Button>
+            </ListGroup.Item>
           </ListGroup>
         </div>
       </div>
