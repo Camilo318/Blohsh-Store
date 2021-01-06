@@ -1,14 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const Rating = ({ value, text }) => {
+const Rating = ({ rating, reviews }) => {
   const stars = [1, 2, 3, 4, 5].map((n) => (
     <span key={n}>
       <i
         className={
-          value >= n
+          rating >= n
             ? "fas fa-star"
-            : value >= n - 0.5
+            : rating >= n - 0.5
             ? "fas fa-star-half-alt"
             : "far fa-star"
         }
@@ -16,16 +16,16 @@ const Rating = ({ value, text }) => {
     </span>
   ))
   return (
-    <div className="rating my-3">
+    <div className='rating my-3'>
       {stars}
-      <span className="ml-2">{text}</span>
+      <span className='ml-2'>{reviews} reviews</span>
     </div>
   )
 }
 
 Rating.propTypes = {
-  value: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
+  value: PropTypes.number,
+  text: PropTypes.number,
 }
 
 export default Rating
