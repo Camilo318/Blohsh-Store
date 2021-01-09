@@ -9,7 +9,7 @@ const HomeScreen = () => {
     async function fetchProducts() {
       try {
         const { data } = await axios.get("/api/products/")
-        setProducts(data)
+        setProducts(data.products)
       } catch (err) {
         console.log("Whooops")
       }
