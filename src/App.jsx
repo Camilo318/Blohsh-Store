@@ -19,12 +19,12 @@ function App() {
       <Header />
       <main className='py-3'>
         <Container>
-          <Suspense fallback={spinner}>
-            <Switch>
+          <Switch>
+            <Suspense fallback={spinner}>
               <Route exact path='/' component={HomeScreen} />
               <Route exact path='/product/:id' component={ProductScreen} />
-            </Switch>
-          </Suspense>
+            </Suspense>
+          </Switch>
         </Container>
       </main>
       <Footer />
