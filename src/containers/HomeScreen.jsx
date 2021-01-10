@@ -1,22 +1,35 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import Product from "../components/Product"
-import axios from "axios"
+
+import { fetchProducts } from "../features/products/productsSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { Spinner } from "react-bootstrap"
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([])
+  const products = useSelector((state) => state.products.entities)
+  const loadState = useSelector((state) => state.products.status)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const { data } = await axios.get("/api/products/")
-        setProducts(data.products)
-      } catch (err) {
-        console.log("Whooops")
-      }
-    }
+    dispatch(fetchProducts("/api/products/"))
+  }, [dispatch])
 
-    fetchProducts()
-  }, [])
+  if (loadState === "loading") {
+    return (
+      <Spinner
+        animation='border'
+        role='status'
+        style={{
+          width: "100px",
+          height: "100px",
+          margin: "auto",
+          display: "block",
+        }}
+      >
+        <span className='sr-only'>Loading...</span>
+      </Spinner>
+    )
+  }
 
   const renderedProducts = products.map((item) => (
     <Product key={item?._id} item={item} />

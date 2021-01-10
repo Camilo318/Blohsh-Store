@@ -16,11 +16,12 @@ const productsSlice = createSlice({
         status: "loading",
       }
     },
-    productsSucces(state, action) {
+    productsSuccess(state, action) {
       const products = action.payload
       return {
         ...state,
         entities: products,
+        status: "idle",
       }
     },
 
@@ -35,22 +36,18 @@ const productsSlice = createSlice({
 
 export const {
   productsLoading,
-  productsSucces,
+  productsSuccess,
   productsFail,
 } = productsSlice.actions
 
 //thunk action creator
 export const fetchProducts = (api) => {
-  return async function fetchProductsThunk(dispatch, getState) {
+  return async function fetchProductsThunk(dispatch) {
     try {
       dispatch(productsLoading())
-
-      const {
-        data: { products },
-      } = await axios.get(api)
-      const prevState = getState()
-      console.log(prevState)
-      dispatch(productsSucces(products))
+      const { data } = await axios.get(api)
+      const { products } = data
+      dispatch(productsSuccess(products))
     } catch (err) {
       dispatch(productsFail(err))
     }
