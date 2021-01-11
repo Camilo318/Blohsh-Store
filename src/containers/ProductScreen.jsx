@@ -10,6 +10,7 @@ const ProductScreen = () => {
   const { id } = useParams()
   const [product, setProduct] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const [qty, setQty] = useState(1)
   console.log("Render!")
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const ProductScreen = () => {
 
   if (isLoading) return <Loader />
   return (
-    <div>
+    <>
       <h1>{product?.name}</h1>
       <Button onClick={() => history.goBack()} variant='light'>
         Go Back
@@ -49,11 +50,30 @@ const ProductScreen = () => {
             <ListGroup.Item>
               <div className='product__amount'>
                 <div className='amount-selector'>
-                  <div className='sub'>-</div>
-                  <div className='amount'>1</div>
-                  <div className='add'>+</div>
+                  <div
+                    className={`sub ${qty < 2 && "disabled"}`}
+                    onClick={() =>
+                      setQty((a) => {
+                        const newQty = a - 1
+                        return newQty < 1 ? 1 : newQty
+                      })
+                    }>
+                    -
+                  </div>
+
+                  <div className='amount'>{qty}</div>
+                  <div
+                    className='add'
+                    onClick={() =>
+                      setQty((a) => {
+                        const newQty = a + 1
+                        return newQty
+                      })
+                    }>
+                    +
+                  </div>
                 </div>
-                <strong>${product?.price}</strong>
+                <strong>${product?.price * qty}</strong>
               </div>
             </ListGroup.Item>
 
@@ -71,7 +91,7 @@ const ProductScreen = () => {
           </ListGroup>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

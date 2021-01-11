@@ -94,6 +94,10 @@ main {
       margin: 0 1rem;
       border-radius: 100px;
       cursor: pointer;
+      &.disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
     }
 
     .sub {
