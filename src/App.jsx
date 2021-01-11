@@ -7,6 +7,7 @@ import Loader from "./components/Loader"
 
 const ProductScreen = lazy(() => import("./containers/ProductScreen"))
 const HomeScreen = lazy(() => import("./containers/HomeScreen"))
+const CartScreen = lazy(() => import("./containers/CartScreen"))
 
 function App() {
   const spinner = <Loader />
@@ -20,6 +21,7 @@ function App() {
             <Suspense fallback={spinner}>
               <Route exact path='/' component={HomeScreen} />
               <Route exact path='/product/:id' component={ProductScreen} />
+              <Route exact path='/cart/:id?' component={CartScreen} />
             </Suspense>
           </Switch>
         </Container>

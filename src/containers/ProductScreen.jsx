@@ -13,6 +13,10 @@ const ProductScreen = () => {
   const [qty, setQty] = useState(1)
   console.log("Render!")
 
+  const goToCart = () => {
+    history.push(`/cart/${id}?qty=${qty}`)
+  }
+
   useEffect(() => {
     async function fetchProduct() {
       const { data } = await axios.get(`/api/products/${id}`)
@@ -84,6 +88,7 @@ const ProductScreen = () => {
                 variant='dark'
                 size='lg'
                 block
+                onClick={goToCart}
                 disabled={product?.countInStock < 1}>
                 ADD TO CART
               </Button>
