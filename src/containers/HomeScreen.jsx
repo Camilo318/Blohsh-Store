@@ -11,8 +11,13 @@ const HomeScreen = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchProducts("/api/products/"))
-  }, [dispatch])
+    if (products.length < 1) {
+      console.log("Mikasa")
+      dispatch(fetchProducts("/api/products/"))
+    } else {
+      console.log("Products already in Mikasa")
+    }
+  }, [dispatch, products])
 
   if (loadState === "loading") {
     return <Loader />
