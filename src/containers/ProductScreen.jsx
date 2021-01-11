@@ -41,21 +41,24 @@ const ProductScreen = () => {
             <ListGroup.Item>
               <h3>{product?.name}</h3>
             </ListGroup.Item>
+            <ListGroup.Item>{product?.description}</ListGroup.Item>
             <ListGroup.Item>
               <Rating rating={product?.rating} reviews={product?.numReviews} />
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <strong>Price:</strong> ${product?.price}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Description:</strong> {product?.description}
+              <div className='product__amount'>
+                <div className='amount-selector'>
+                  <div className='sub'>-</div>
+                  <div className='amount'>1</div>
+                  <div className='add'>+</div>
+                </div>
+                <strong>${product?.price}</strong>
+              </div>
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <strong>Status: </strong>
               {product?.countInStock ? "In Stock 😗" : "Out of Stock 😑"}
-
               <Button
                 className='my-3 btn-cart'
                 variant='dark'

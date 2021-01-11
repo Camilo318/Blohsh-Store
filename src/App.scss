@@ -63,6 +63,7 @@ main {
 }
 
 .product__info {
+  color: #282828;
   flex-basis: 100%;
   @media (min-width: 768px) {
     flex-basis: 50%;
@@ -72,5 +73,39 @@ main {
     background-color: #333333;
     border-color: #333333;
     border-radius: 3px;
+  }
+}
+
+.product__amount {
+  display: flex;
+  justify-content: space-between;
+  color: #282828;
+  .amount-selector {
+    display: flex;
+    align-items: center;
+    .sub,
+    .add {
+      width: 24px;
+      height: 24px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 1rem;
+      border-radius: 100px;
+      cursor: pointer;
+    }
+
+    .sub {
+      background-color: #dfdfdf;
+      margin-left: 0;
+    }
+    .add {
+      border: 1px solid #282828;
+    }
+
+    .amount {
+      font-size: 0.875rem;
+    }
   }
 }
