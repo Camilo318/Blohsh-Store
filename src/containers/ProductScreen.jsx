@@ -2,22 +2,29 @@ import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { Image, ListGroup, Button } from "react-bootstrap"
 import Rating from "../components/Rating"
+import Loader from "../components/Loader"
 import axios from "axios"
 
 const ProductScreen = () => {
   const history = useHistory()
   const { id } = useParams()
   const [product, setProduct] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  console.log("Render!")
 
   useEffect(() => {
     async function fetchProduct() {
       const { data } = await axios.get(`/api/products/${id}`)
+      console.log("About to trigger a re-render")
       setProduct(data)
+      console.log("We just rendered")
+      setIsLoading(false)
     }
 
     fetchProduct()
   }, [id])
 
+  if (isLoading) return <Loader />
   return (
     <div>
       <h1>{product?.name}</h1>
@@ -54,8 +61,7 @@ const ProductScreen = () => {
                 variant='dark'
                 size='lg'
                 block
-                disabled={product?.countInStock < 1}
-              >
+                disabled={product?.countInStock < 1}>
                 ADD TO CART
               </Button>
             </ListGroup.Item>
