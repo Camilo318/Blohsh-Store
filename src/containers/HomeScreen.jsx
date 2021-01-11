@@ -3,7 +3,7 @@ import Product from "../components/Product"
 
 import { fetchProducts } from "../features/products/productsSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { Spinner } from "react-bootstrap"
+import Loader from "../components/Loader"
 
 const HomeScreen = () => {
   const products = useSelector((state) => state.products.entities)
@@ -15,20 +15,7 @@ const HomeScreen = () => {
   }, [dispatch])
 
   if (loadState === "loading") {
-    return (
-      <Spinner
-        animation='border'
-        role='status'
-        style={{
-          width: "100px",
-          height: "100px",
-          margin: "auto",
-          display: "block",
-        }}
-      >
-        <span className='sr-only'>Loading...</span>
-      </Spinner>
-    )
+    return <Loader />
   }
 
   const renderedProducts = products.map((item) => (

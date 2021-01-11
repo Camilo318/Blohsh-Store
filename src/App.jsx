@@ -1,27 +1,15 @@
 import { Suspense, lazy } from "react"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { Container, Spinner } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Loader from "./components/Loader"
 
 const ProductScreen = lazy(() => import("./containers/ProductScreen"))
 const HomeScreen = lazy(() => import("./containers/HomeScreen"))
 
 function App() {
-  const spinner = (
-    <Spinner
-      animation='border'
-      role='status'
-      style={{
-        width: "100px",
-        height: "100px",
-        margin: "auto",
-        display: "block",
-      }}
-    >
-      <span className='sr-only'>Loading...</span>
-    </Spinner>
-  )
+  const spinner = <Loader />
 
   return (
     <Router>
