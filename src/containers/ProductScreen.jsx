@@ -4,10 +4,13 @@ import { Image, ListGroup, Button } from "react-bootstrap"
 import Rating from "../components/Rating"
 import Loader from "../components/Loader"
 import axios from "axios"
+import { cartAddItem } from "../features/cart/cartSlice"
+import { useDispatch } from "react-redux"
 
 const ProductScreen = () => {
   const history = useHistory()
   const { id } = useParams()
+  const dispatch = useDispatch()
   const [product, setProduct] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [qty, setQty] = useState(1)
@@ -15,6 +18,12 @@ const ProductScreen = () => {
 
   const goToCart = () => {
     history.push(`/cart/${id}?qty=${qty}`)
+    dispatch(
+      cartAddItem({
+        ...product,
+        qty,
+      })
+    )
   }
 
   useEffect(() => {
