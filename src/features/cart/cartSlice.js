@@ -19,9 +19,20 @@ const cartSlice = createSlice({
         total: state.total + item.price,
       }
     },
+    cartRemoveItem(state, action) {
+      const id = action.payload
+      const newItems = { ...state.items }
+      const subAmount = newItems[id].price
+      delete newItems[id]
+      return {
+        ...state,
+        items: newItems,
+        total: state.total - subAmount,
+      }
+    },
   },
 })
 
 //Action creators
-export const { cartAddItem } = cartSlice.actions
+export const { cartAddItem, cartRemoveItem } = cartSlice.actions
 export default cartSlice.reducer

@@ -1,10 +1,12 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { ListGroup, Row, Col, Image } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { cartRemoveItem } from "../features/cart/cartSlice"
 
 const CartScreen = () => {
   const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   const items = Object.values(cart.items)
 
   if (Object.keys(items).length === 0) {
@@ -14,6 +16,10 @@ const CartScreen = () => {
         <p>Your Shopping Cart lives to serve. Give it a purpose</p>
       </div>
     )
+  }
+
+  const removeFromCart = (id) => {
+    dispatch(cartRemoveItem(id))
   }
   return (
     <div className='shopping-cart'>
@@ -39,7 +45,11 @@ const CartScreen = () => {
               <Col md={4}>
                 <Link to={"/product/" + item?._id}>{item.name}</Link>
                 <div className='item-options'>
-                  <div className='item-options__delete'>Delete</div>
+                  <div
+                    className='item-options__delete'
+                    onClick={() => removeFromCart(item._id)}>
+                    Delete
+                  </div>
                   <div className='item-options__save'>Save for later</div>
                 </div>
               </Col>
