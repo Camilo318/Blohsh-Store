@@ -20,7 +20,11 @@ const ProductScreen = () => {
     history.push(`/cart/${id}?qty=${qty}`)
     dispatch(
       cartAddItem({
-        ...product,
+        _id: id,
+        name: product.name,
+        countInStock: product.countInStock,
+        image: product.image,
+        price: product.price,
         qty,
       })
     )
