@@ -16,13 +16,13 @@ const cartSlice = createSlice({
       return {
         ...state,
         items: { ...state.items, [item._id]: item },
-        total: state.total + item.price,
+        total: state.total + item.priceTotal,
       }
     },
     cartRemoveItem(state, action) {
       const id = action.payload
       const newItems = { ...state.items }
-      const subAmount = newItems[id].price
+      const subAmount = newItems[id].priceTotal
       delete newItems[id]
       return {
         ...state,

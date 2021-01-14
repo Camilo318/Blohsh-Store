@@ -25,6 +25,7 @@ const ProductScreen = () => {
         countInStock: product.countInStock,
         image: product.image,
         price: product.price,
+        priceTotal: product.price * qty,
         qty,
       })
     )
