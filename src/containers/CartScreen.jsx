@@ -24,7 +24,7 @@ const CartScreen = () => {
   return (
     <div className='shopping-cart'>
       <h2>Shopping Cart</h2>
-      <ListGroup variant='flush'>
+      <ListGroup variant='flush' className='mt-4'>
         <ListGroup.Item>
           <Row>
             <Col md={3}></Col>
@@ -59,6 +59,22 @@ const CartScreen = () => {
             </Row>
           </ListGroup.Item>
         ))}
+        <ListGroup.Item>
+          <Row>
+            <Col xs={{ span: 4, offset: 3 }}>
+              <div className='d-flex'>
+                <span>
+                  <strong>
+                    Subtotal ({Object.keys(cart.items).length} items):
+                  </strong>
+                </span>
+              </div>
+            </Col>
+            <Col xs={3}>
+              <strong>${cart.total}</strong>
+            </Col>
+          </Row>
+        </ListGroup.Item>
       </ListGroup>
     </div>
   )
