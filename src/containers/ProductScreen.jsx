@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
+import axios from "axios"
 import { useHistory, useParams } from "react-router-dom"
 import { Image, ListGroup, Button } from "react-bootstrap"
 import Rating from "../components/Rating"
 import Loader from "../components/Loader"
 import Notification from "../components/Notification"
-import axios from "axios"
+import AmountSelector from "../components/AmountSelector"
 import { cartAddItem } from "../features/cart/cartSlice"
 import { useDispatch } from "react-redux"
 
@@ -78,30 +79,10 @@ const ProductScreen = () => {
 
             <ListGroup.Item>
               <div className='product__amount'>
-                <div className='amount-selector'>
-                  <div
-                    className={`sub ${qty < 2 && "disabled"}`}
-                    onClick={() =>
-                      setQty((a) => {
-                        const newQty = a - 1
-                        return newQty < 1 ? 1 : newQty
-                      })
-                    }>
-                    -
-                  </div>
-
-                  <div className='amount'>{qty}</div>
-                  <div
-                    className='add'
-                    onClick={() =>
-                      setQty((a) => {
-                        const newQty = a + 1
-                        return newQty
-                      })
-                    }>
-                    +
-                  </div>
-                </div>
+                <AmountSelector
+                  stock={product?.countInStock}
+                  setAmount={setQty}
+                />
                 <strong>${(product?.price * qty).toFixed(2)}</strong>
               </div>
             </ListGroup.Item>
