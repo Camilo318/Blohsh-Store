@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { Image, ListGroup, Button, Toast } from "react-bootstrap"
+import { Image, ListGroup, Button } from "react-bootstrap"
 import Rating from "../components/Rating"
 import Loader from "../components/Loader"
+import Notification from "../components/Notification"
 import axios from "axios"
 import { cartAddItem } from "../features/cart/cartSlice"
 import { useDispatch } from "react-redux"
@@ -50,15 +51,12 @@ const ProductScreen = () => {
   if (isLoading) return <Loader />
   return (
     <>
-      <Toast animation show={show} onClose={() => setShow(false)}>
-        <Toast.Header>Item added to the cart</Toast.Header>
-        <Toast.Body>
-          <Button variant='outline-primary' className='mr-3' onClick={goToCart}>
-            Cart
-          </Button>
-          <Button variant='outline-dark'>Checkout</Button>
-        </Toast.Body>
-      </Toast>
+      <Notification show={show} setShow={setShow}>
+        <Button variant='outline-primary' className='mr-3' onClick={goToCart}>
+          Cart
+        </Button>
+        <Button variant='outline-dark'>Checkout</Button>
+      </Notification>
       <h2>{product?.name}</h2>
       <Button onClick={() => history.goBack()} variant='light'>
         Go Back
@@ -104,7 +102,7 @@ const ProductScreen = () => {
                     +
                   </div>
                 </div>
-                <strong>${product?.price * qty}</strong>
+                <strong>${(product?.price * qty).toFixed(2)}</strong>
               </div>
             </ListGroup.Item>
 
@@ -117,7 +115,7 @@ const ProductScreen = () => {
                 block
                 onClick={addToCart}
                 disabled={product?.countInStock < 1}>
-                ADD TO CART
+                Add to Cart
               </Button>
             </ListGroup.Item>
           </ListGroup>
