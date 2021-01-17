@@ -80,6 +80,19 @@ main {
   display: flex;
   justify-content: space-between;
   color: #282828;
+  .amount-selector {
+    select {
+      width: 88px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      background-color: white;
+      border: 1px solid #d0c4c3;
+    }
+    select:focus {
+      outline: none;
+      background: $light;
+    }
+  }
 }
 
 .shopping-cart {
