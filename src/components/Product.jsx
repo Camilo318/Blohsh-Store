@@ -12,16 +12,14 @@ const Product = ({ item }) => {
 
       <Card.Body>
         <Link to={"/product/" + item?._id}>
-          <Card.Title>
-            <strong>{item?.name}</strong>
-          </Card.Title>
+          <Card.Title as='h4'>{item?.name}</Card.Title>
         </Link>
 
         <Card.Text as='div'>
           <Rating rating={item?.rating} reviews={item?.numReviews} />
         </Card.Text>
 
-        <Card.Text as='h3'>${item?.price}</Card.Text>
+        <Card.Text as='h5'>${item?.price}</Card.Text>
       </Card.Body>
     </Card>
   )

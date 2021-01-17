@@ -63,7 +63,7 @@ const CartScreen = () => {
         ))}
         <ListGroup.Item>
           <Row>
-            <Col xs={{ span: 4, offset: 3 }}>
+            <Col sm={7} md={{ span: 4, offset: 3 }}>
               <div className='d-flex'>
                 <span>
                   <strong>
@@ -72,7 +72,7 @@ const CartScreen = () => {
                 </span>
               </div>
             </Col>
-            <Col xs={3}>
+            <Col sm={5} md={3}>
               <strong>${cart.total}</strong>
             </Col>
           </Row>

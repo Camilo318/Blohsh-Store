@@ -4,6 +4,7 @@ import Product from "../components/Product"
 import { fetchProducts } from "../features/products/productsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import Loader from "../components/Loader"
+import { Alert, Button } from "react-bootstrap"
 
 const HomeScreen = () => {
   const products = useSelector((state) => state.products.entities)
@@ -24,7 +25,16 @@ const HomeScreen = () => {
     return <Loader />
   }
   if (error) {
-    return <h2>Whoopss, something went wrong</h2>
+    return (
+      <Alert variant='warning'>
+        <Alert.Heading>Something went wrong.</Alert.Heading>
+        Please check your connection and try again.
+        <hr />
+        <div className='d-flex justify-content-start'>
+          <Button variant='outline-dark'>Support</Button>
+        </div>
+      </Alert>
+    )
   }
 
   const renderedProducts = products.map((item) => (
