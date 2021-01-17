@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { Image, ListGroup, Button } from "react-bootstrap"
+import { Image, ListGroup, Button, Toast } from "react-bootstrap"
 import Rating from "../components/Rating"
 import Loader from "../components/Loader"
 import axios from "axios"
@@ -10,14 +10,15 @@ import { useDispatch } from "react-redux"
 const ProductScreen = () => {
   const history = useHistory()
   const { id } = useParams()
-  const dispatch = useDispatch()
   const [product, setProduct] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [qty, setQty] = useState(1)
+  const [show, setShow] = useState(false)
+  const dispatch = useDispatch()
   console.log("Render!")
 
-  const goToCart = () => {
-    history.push(`/cart/${id}?qty=${qty}`)
+  const addToCart = () => {
+    setShow(true)
     dispatch(
       cartAddItem({
         _id: id,
@@ -29,6 +30,9 @@ const ProductScreen = () => {
         qty,
       })
     )
+  }
+  const goToCart = () => {
+    history.push(`/cart/${id}?qty=${qty}`)
   }
 
   useEffect(() => {
@@ -46,7 +50,16 @@ const ProductScreen = () => {
   if (isLoading) return <Loader />
   return (
     <>
-      <h1>{product?.name}</h1>
+      <Toast animation show={show} onClose={() => setShow(false)}>
+        <Toast.Header>Item added to the cart</Toast.Header>
+        <Toast.Body>
+          <Button variant='outline-primary' className='mr-3' onClick={goToCart}>
+            Cart
+          </Button>
+          <Button variant='outline-dark'>Checkout</Button>
+        </Toast.Body>
+      </Toast>
+      <h2>{product?.name}</h2>
       <Button onClick={() => history.goBack()} variant='light'>
         Go Back
       </Button>
@@ -102,7 +115,7 @@ const ProductScreen = () => {
                 variant='dark'
                 size='lg'
                 block
-                onClick={goToCart}
+                onClick={addToCart}
                 disabled={product?.countInStock < 1}>
                 ADD TO CART
               </Button>

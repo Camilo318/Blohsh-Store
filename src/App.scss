@@ -117,3 +117,19 @@ main {
 .shopping-cart {
   color: #282828;
 }
+
+.toast {
+  position: fixed;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 1;
+  width: 410px;
+  .toast-header {
+    font-size: 1rem;
+    font-weight: 500;
+    justify-content: space-between;
+    .close {
+      font-size: 2rem;
+    }
+  }
+}
