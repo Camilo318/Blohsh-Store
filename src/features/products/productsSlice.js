@@ -4,6 +4,7 @@ import axios from "axios"
 const initialState = {
   status: "idle",
   entities: [],
+  error: null,
 }
 
 const productsSlice = createSlice({
@@ -29,6 +30,7 @@ const productsSlice = createSlice({
       return {
         ...state,
         status: "idle",
+        error: action.payload,
       }
     },
   },

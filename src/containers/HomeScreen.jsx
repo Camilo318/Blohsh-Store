@@ -8,6 +8,7 @@ import Loader from "../components/Loader"
 const HomeScreen = () => {
   const products = useSelector((state) => state.products.entities)
   const loadState = useSelector((state) => state.products.status)
+  const error = useSelector((state) => state.products.error)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -21,6 +22,9 @@ const HomeScreen = () => {
 
   if (loadState === "loading") {
     return <Loader />
+  }
+  if (error) {
+    return <h2>Whoopss, something went wrong</h2>
   }
 
   const renderedProducts = products.map((item) => (
