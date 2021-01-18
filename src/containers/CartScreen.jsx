@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { ListGroup, Row, Col, Image } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { cartRemoveItem } from "../features/cart/cartSlice"
+import AmountSelector from "../components/AmountSelector"
 
 const CartScreen = () => {
   const cart = useSelector((state) => state.cart)
@@ -45,14 +46,19 @@ const CartScreen = () => {
                 </Link>
               </Col>
               <Col md={4}>
-                <Link to={"/product/" + item?._id}>{item.name}</Link>
-                <div className='item-options'>
+                <div className='mb-3'>
+                  <Link to={"/product/" + item?._id}>
+                    <h5>{item.name}</h5>
+                  </Link>
+                </div>
+                <AmountSelector stock={item.countInStock} inCart={true} />
+                <div className='item-options mt-3 d-flex'>
                   <div
-                    className='item-options__delete'
+                    className='delete mr-3'
                     onClick={() => removeFromCart(item._id)}>
                     Delete
                   </div>
-                  <div className='item-options__save'>Save for later</div>
+                  <div className='save'>Save for later</div>
                 </div>
               </Col>
               <Col md={3}>

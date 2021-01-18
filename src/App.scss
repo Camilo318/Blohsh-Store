@@ -80,21 +80,37 @@ main {
   display: flex;
   justify-content: space-between;
   color: #282828;
-  .amount-selector {
-    select {
-      width: 88px;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      background-color: white;
-      border: 1px solid #d0c4c3;
-    }
-    select:focus {
-      outline: none;
-      background: $light;
-    }
+}
+.amount-selector {
+  select {
+    width: 88px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid #d0c4c3;
+  }
+  select:focus {
+    outline: none;
+    background: $light;
   }
 }
 
+.item-options {
+  .save {
+    font-weight: 500;
+    color: $blue;
+  }
+  .delete {
+    font-weight: 500;
+    color: $danger;
+  }
+  div {
+    cursor: pointer;
+  }
+  div:hover {
+    text-decoration: underline;
+  }
+}
 .shopping-cart {
   color: #282828;
 }
