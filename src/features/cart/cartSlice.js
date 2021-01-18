@@ -11,8 +11,6 @@ const cartSlice = createSlice({
   reducers: {
     cartAddItem(state, action) {
       const item = action.payload
-      if (state.items[item._id]) return state
-
       return {
         ...state,
         items: { ...state.items, [item._id]: item },
@@ -35,4 +33,16 @@ const cartSlice = createSlice({
 
 //Action creators
 export const { cartAddItem, cartRemoveItem } = cartSlice.actions
+
 export default cartSlice.reducer
+
+//Middleware to handle repeated items in the cart and storing info in localStorage while adding items to the cart
+export const preAddToCart = (item) => (dispatch, getState) => {
+  const { items } = getState().cart
+  if (items[item._id]) return
+  dispatch(cartAddItem(item))
+  const { cart } = getState()
+  console.dir(cart)
+  localStorage.clear()
+  localStorage.setItem("cart", JSON.stringify(cart))
+}

@@ -6,7 +6,7 @@ import Rating from "../components/Rating"
 import Loader from "../components/Loader"
 import Notification from "../components/Notification"
 import AmountSelector from "../components/AmountSelector"
-import { cartAddItem } from "../features/cart/cartSlice"
+import { preAddToCart } from "../features/cart/cartSlice"
 import { useDispatch } from "react-redux"
 
 const ProductScreen = () => {
@@ -22,7 +22,7 @@ const ProductScreen = () => {
   const addToCart = () => {
     setShow(true)
     dispatch(
-      cartAddItem({
+      preAddToCart({
         _id: id,
         name: product.name,
         countInStock: product.countInStock,
@@ -63,9 +63,9 @@ const ProductScreen = () => {
         Go Back
       </Button>
 
-      <div className='product__container my-3'>
+      <div className='product__container my-2'>
         <div className='product__photo'>
-          <Image fluid src={product?.image} alt={product?.name} />
+          <Image fluid rounded src={product?.image} alt={product?.name} />
         </div>
         <div className='product__info'>
           <ListGroup variant='flush'>
