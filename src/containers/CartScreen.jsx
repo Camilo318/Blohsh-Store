@@ -72,14 +72,12 @@ const CartScreen = () => {
             <Col sm={7} md={{ span: 4, offset: 3 }}>
               <div className='d-flex'>
                 <span>
-                  <strong>
-                    Subtotal ({Object.keys(cart.items).length} items):
-                  </strong>
+                  <strong>Subtotal ({items.length} items):</strong>
                 </span>
               </div>
             </Col>
             <Col sm={5} md={3}>
-              <strong>${cart.total}</strong>
+              <strong>${cart.total.toFixed(2)}</strong>
             </Col>
           </Row>
         </ListGroup.Item>
